@@ -1,0 +1,21 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.login-form{
+  max-width: 500px;
+}
+
+.signup-form{
+  min-width: 600px;
+}
+
+.default-page{
+  background-color: #888888;
+  width: 100%;
+  min-height: 200px;
+}

@@ -1,0 +1,4 @@
+define([
+    './messageService',
+    './userService'
+], function () {});

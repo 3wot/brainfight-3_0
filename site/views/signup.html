@@ -1,0 +1,62 @@
+<div class="row-center">
+
+    <form class="form-horizontal signup-form" role="form" name="signup_form">
+        <h2>Регистрация нового пользователя</h2>
+        <div class="form-group has-feedback {{username.state}}">
+            <label class="control-label col-sm-2" for="username">Ваш логин:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="username" placeholder="Ваш логин" ng-model="username.value" ng-change="usernameIsDuplicate()" required>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="username.state == 'has-error'"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="username.state == 'has-success'"></span>
+            </div>
+            <div class="col-sm-4">
+                <span class="text-danger" ng-show="(username.state != '') && (username.state != 'has-success')">{{username.error}}</span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback {{email.state}}">
+            <label class="control-label col-sm-2" for="username">Ваш email:</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" id="email" placeholder="Ваш email" ng-model="email.value" ng-change="emailValidate()" required>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="email.state == 'has-error'"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="email.state == 'has-success'"></span>
+            </div>
+            <div class="col-sm-4">
+                <span class="text-danger" ng-show="(email.state != '') && (email.state != 'has-success')">{{email.error}}</span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback {{password.state}}">
+            <label class="control-label col-sm-2" for="pwd">Пароль:</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="pwd" placeholder="Пароль" ng-model="password.value" ng-change="password.state = 'has-success'" required>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="password.state == 'has-error'"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="password.state == 'has-success'"></span>
+            </div>
+            <div class="col-sm-4">
+                <span class="text-danger" ng-show="(password.state != '') && (password.state != 'has-success')">{{password.error}}</span>
+            </div>
+        </div>
+        <div class="form-group has-feedback {{passwordConfirm.state}}">
+            <label class="control-label col-sm-2" for="pwd">Подтверждение пароля:</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="pwdConfirm" placeholder="Подтверждение пароля" ng-model="passwordConfirm.value" ng-change="passwordConfirm.state = 'has-success'" required>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="passwordConfirm.state == 'has-error'"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="passwordConfirm.state == 'has-success'"></span>
+            </div>
+            <div class="col-sm-4">
+                <span class="text-danger" ng-show="(passwordConfirm.state != '') && (passwordConfirm.state != 'has-success')">{{passwordConfirm.error}}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" ng-click="signup()">Зарегистрироваться</button>
+            </div>
+        </div>
+
+        <div class="alert alert-danger" ng-show="hasError">
+            <strong>Ошибка: </strong>{{errorText}}
+        </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+<div class="row-center">
+
+    <form class="form-horizontal login-form" role="form">
+        <h2>Вход</h2>
+        <div class="form-group has-feedback {{username.state}}">
+            <label class="control-label col-sm-2" for="username">Логин:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Введите логин" ng-model="username.value" ng-change="username.state = 'has-success'" required>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="username.state == 'has-error'"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="username.state == 'has-success'"></span>
+            </div>
+        </div>
+        <div class="form-group has-feedback {{password.state}}">
+            <label class="control-label col-sm-2" for="pwd">Пароль:</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="pwd" placeholder="Введите пароль" ng-model="password.value" ng-change="password.state = 'has-success'" required>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="password.state == 'has-error'"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="password.state == 'has-success'"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input type="checkbox"> Запомнить меня</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" ng-click="login()">Войти</button>
+                <a class="btn btn-default" href="/signup"><span class="glyphicon glyphicon-user"></span> Зарегистрироваться</a>
+            </div>
+        </div>
+
+        <div class="alert alert-danger" ng-show="hasError">
+            <strong>Ошибка: </strong>{{errorText}}
+        </div>
+    </form>
+</div>

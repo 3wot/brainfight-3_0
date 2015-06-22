@@ -10,40 +10,35 @@
 
 <IfModule mod_rewrite.c>
 
-    # deal with admin first
-
-    RewriteCond %{REQUEST_URI} ^/(admin)
-
-    RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
-
-    RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
-
-
-
-    RewriteCond %{REQUEST_URI} !^/backend/web/(assets|css)/
-
-    RewriteCond %{REQUEST_URI} ^/(admin)
-
+    #все с /service/ отправляем в backend
+    RewriteCond %{REQUEST_URI} ^/(service)
     RewriteRule ^.*$ backend/web/index.php [L]
 
 
 
-    RewriteCond %{REQUEST_URI} ^/(assets|css)
+    #все html, css, js фалы отправляем в директорию site
+    RewriteCond %{REQUEST_URI} ^/(css|img|js|views)
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^img/(.*)$ site/img/$1 [L]
+    RewriteRule ^css/(.*)$ site/css/$1 [L]
+    RewriteRule ^js/(.*)$ site/js/$1 [L]
+    RewriteRule ^views/(.*)$ site/views/$1 [L]
 
-    RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
-
-    RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
 
 
-
-    RewriteCond %{REQUEST_URI} !^/(frontend|backend)/web/(assets|css)/
-
-    RewriteCond %{REQUEST_URI} !index.php
-
-    RewriteCond %{REQUEST_FILENAME} !-f [OR]
-
+    #все остальное отправляем в frontend
+    RewriteCond %{REQUEST_URI} !^/(css|img|js|views|service)
+    RewriteCond %{REQUEST_URI} !^/(service)
+    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . frontend/web/site/index [L]
 
+
+
+    RewriteCond %{REQUEST_URI} !/(css|img|js|views)
+    RewriteCond %{REQUEST_URI} !/(service)
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^.*$ frontend/web/index.php
 
 </IfModule>
