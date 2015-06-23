@@ -32,7 +32,6 @@
     RewriteCond %{REQUEST_URI} !/(service)
     RewriteCond %{REQUEST_FILENAME} !-f [OR]
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^.*$ site/index [P]
     RewriteRule ^.*$ frontend/web/index.php [L]
 
 </IfModule>

@@ -34,4 +34,5 @@ return [
         ],
     ],
     'params' => $params,
+    'catchAll' => ['site/index'] //Все запросы обрабатываются одним action
 ];

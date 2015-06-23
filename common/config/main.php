@@ -13,6 +13,5 @@ return [
             ]
         ],
     ],
-    'defaultRoute' => 'site/index'
 
 ];

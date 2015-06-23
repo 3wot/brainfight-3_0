@@ -21,7 +21,7 @@ define(['./module'], function (services) {
 
                 var deferred = $q.defer();
 
-                $http.get("/user/login/" + username + "/" + password)
+                $http.get("/service/user/login/" + username + "/" + password)
                     .success(function(res){
                         res = messageService.validate(res);
                         if(res.status === 1 && 'authToken' in res.data){
@@ -42,7 +42,7 @@ define(['./module'], function (services) {
 
                 var deferred = $q.defer();
 
-                $http.post("/user/signup", {username: username, email: email, password: password})
+                $http.post("/service/user/signup", {username: username, email: email, password: password})
                     .success(function(res){
                         res = messageService.validate(res);
                         deferred.resolve(res);
@@ -58,7 +58,7 @@ define(['./module'], function (services) {
 
                 var deferred = $q.defer();
 
-                $http.get("/user/usernameIsDuplicate/" + username)
+                $http.get("/service/user/usernameIsDuplicate/" + username)
                     .success(function(res){
                         res = messageService.validate(res);
                         deferred.resolve(res);
@@ -74,7 +74,7 @@ define(['./module'], function (services) {
 
                 var deferred = $q.defer();
 
-                $http.get("/user/emailIsDuplicate/" + email)
+                $http.get("/service/user/emailIsDuplicate/" + email)
                     .success(function(res){
                         res = messageService.validate(res);
                         deferred.resolve(res);
