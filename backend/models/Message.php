@@ -22,5 +22,10 @@ class Message extends Controller {
        $this->renderAjax(['status' => $this->status, 'message' => $this->message, 'data' => $this->data]);
     }
 
+    public static function defaultMessage()
+    {
+        return new Message(0, "Произошла неизвестная ошибка", []);
+    }
+
 
 }

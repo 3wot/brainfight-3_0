@@ -80,4 +80,9 @@ class UserController extends Controller
 
         return $this->goHome();
     }
+
+    public function actionUsernameIsDuplicate($username)
+    {
+        echo 111;
+    }
 }

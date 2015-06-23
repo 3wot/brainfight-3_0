@@ -58,7 +58,7 @@ define(['./module'], function (services) {
 
                 var deferred = $q.defer();
 
-                $http.get("/service/user/usernameIsDuplicate/" + username)
+                $http.get("/service/user/usernameIsDuplicate",{username: username})
                     .success(function(res){
                         res = messageService.validate(res);
                         deferred.resolve(res);
