@@ -15,31 +15,6 @@ class UserController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * @inheritdoc
@@ -55,7 +30,7 @@ class UserController extends Controller
 
     public function actionIndex()
     {
-        return $this->renderAjax([]);
+        echo 111;
     }
 
     public function actionLogin()
@@ -83,6 +58,8 @@ class UserController extends Controller
 
     public function actionUsernameIsDuplicate($username)
     {
-        echo 111;
+        $model = new User();
+
+        echo $model->usernameIsDuplicate($username);
     }
 }

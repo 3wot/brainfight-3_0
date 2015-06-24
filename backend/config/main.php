@@ -16,11 +16,11 @@ return [
         'request'=>[
             'class' => 'common\components\Request',
             'web'=> '/backend/web',
-            'adminUrl' => '/admin'
+            'serviceUrl' => '/service'
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'backend\models\User',
+            'enableAutoLogin' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -30,9 +30,6 @@ return [
                     'levels' => ['error', 'warning'],
                 ],
             ],
-        ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
         ],
         'db' => require(__DIR__ . '/db.php'),
 

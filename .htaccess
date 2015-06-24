@@ -12,15 +12,12 @@
 
     #все с /service/ отправляем в backend
     RewriteCond %{REQUEST_URI} ^/(service)
-    RewriteCond %{REQUEST_FILENAME} !-f [OR]
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^.*$ backend/web/index.php [L]
+    RewriteRule ^.*$ /backend/web/index.php [L]
 
 
 
     #все html, css, js фалы отправляем в директорию site
     RewriteCond %{REQUEST_URI} ^/(css|img|js|views)
-    RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule ^img/(.*)$ site/img/$1 [L]
     RewriteRule ^css/(.*)$ site/css/$1 [L]
     RewriteRule ^js/(.*)$ site/js/$1 [L]
@@ -30,9 +27,7 @@
 
     #все остальное отправляем в frontend
     RewriteCond %{REQUEST_URI} !/(css|img|js|views)
-    RewriteCond %{REQUEST_URI} !/(service)
-    RewriteCond %{REQUEST_FILENAME} !-f [OR]
-    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !/(service|backend)
     RewriteRule ^.*$ frontend/web/index.php [L]
 
 </IfModule>
