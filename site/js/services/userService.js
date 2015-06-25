@@ -58,12 +58,12 @@ define(['./module'], function (services) {
 
                 var deferred = $q.defer();
 
-                $http.get("/service/user/usernameIsDuplicate",{username: username})
+                $http.get("/service/user/username-is-duplicate?username="+ username)
                     .success(function(res){
                         res = messageService.validate(res);
                         deferred.resolve(res);
                     })
-                    .error(function(){
+                    .error(function(data, status, headers, config){
                         deferred.reject(messageService.defaultError());
                     });
 
@@ -74,7 +74,7 @@ define(['./module'], function (services) {
 
                 var deferred = $q.defer();
 
-                $http.get("/service/user/emailIsDuplicate/" + email)
+                $http.get("/service/user/email-is-duplicate/?email=" + email)
                     .success(function(res){
                         res = messageService.validate(res);
                         deferred.resolve(res);
