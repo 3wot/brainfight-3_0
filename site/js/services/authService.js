@@ -2,7 +2,7 @@ define(['./module'], function (services) {
     'use strict';
 
     services.factory('authService',
-        ['base64', '$http', '$cookies', '$rootScope',
+        ['Base64', '$http', '$cookies', '$rootScope',
             function (Base64, $http, $cookies, $rootScope) {
                 var service = {};
 
