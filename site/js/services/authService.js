@@ -8,7 +8,7 @@ define(['./module'], function (services) {
 
                 service.Login = function (username, password, callback) {
 
-                    $http.post('/api/authenticate', { username: username, password: password })
+                    $http.post('/service/user/authenticate', { username: username, password: password })
                         .success(function (response) {
                             callback(response);
                         });

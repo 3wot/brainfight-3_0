@@ -188,6 +188,32 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function usernameIsDuplicate($username)
     {
-        return $this->find()->where(["username" => $username])->all();
+        if( count($this->find()->where(["username" => $username])->all()) > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function login()
+    {
+        if( count($this->find()->where(["username" => $this->username])->all()) > 0)
+        {
+            if($this->validatePassword($this->password))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 }

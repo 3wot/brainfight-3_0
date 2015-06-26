@@ -62,4 +62,18 @@ class UserController extends Controller
 
         echo $model->usernameIsDuplicate($username);
     }
+
+    public function actionAuthenticate()
+    {
+        $request = Yii::$app->request;
+
+        $username = $request->post('username');
+        $password = $request->post('password');
+
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+
+        }
+
+    }
 }
