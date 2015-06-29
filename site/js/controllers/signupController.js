@@ -15,7 +15,9 @@ define(['./module'], function (controllers) {
         $scope.signup = function(){
             $scope.hideError();
 
-            var promise = userService.signup($scope.username.value, $scope.email.value, $scope.password.value);
+
+
+            /*var promise = userService.signup($scope.username.value, $scope.email.value, $scope.password.value);
 
             promise.then(function(resolve){
                 if(resolve.status === 1){ //регистрация успешна
@@ -25,7 +27,7 @@ define(['./module'], function (controllers) {
                 }
             }, function(reject){
                 $scope.showError(reject.message, resolve.fields);
-            });
+            });*/
         };
 
         $scope.usernameIsDuplicate = function(){
@@ -45,7 +47,7 @@ define(['./module'], function (controllers) {
         },
 
         $scope.emailValidate = function(){
-
+            //Валидация + проверка на уже существующий email
             var EMAIL_REGEXP = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 
             if($scope.email.value == ""){

@@ -12,9 +12,17 @@ use backend\models\User;
  */
 class UserController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
+    public function behaviors()
+    {
+        return [
+            'slug' => [
+                'class' => 'common\behaviors\Slug',
+                'in_attribute' => 'name',
+                'out_attribute' => 'slug',
+                'translit' => true
+            ]
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -65,10 +73,7 @@ class UserController extends Controller
 
     public function actionAuthenticate()
     {
-        $request = Yii::$app->request;
-
-        $username = $request->post('username');
-        $password = $request->post('password');
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
