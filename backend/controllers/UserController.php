@@ -6,12 +6,15 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use backend\models\User;
+use traits\Sender;
 
 /**
  * Site controller
  */
 class UserController extends Controller
 {
+    use \traits\Message\Sender;
+
     public function behaviors()
     {
         return [
@@ -71,14 +74,32 @@ class UserController extends Controller
         echo $model->usernameIsDuplicate($username);
     }
 
-    public function actionAuthenticate()
+    public function actionAuth()
     {
         $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
+            $authToken = $model->getAuthKey();
 
+            $sender = new Sender(true, "Авторизация успешна", ['authToken' => $authToken]);
+            $sender->send();
         }
 
+    }
+
+    public function actionRegister()
+    {
+        $model = new User();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate())
+        {
+            if($model->save())
+            {
+                $sender = new Sender(true, "Регистрация прошла успешно");
+                $sender->send();
+            }
+
+        }
     }
 }
