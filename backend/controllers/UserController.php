@@ -6,14 +6,12 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use backend\models\User;
-use traits\Sender;
 
 /**
  * Site controller
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
-    use \traits\Message\Sender;
 
     public function behaviors()
     {
